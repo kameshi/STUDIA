@@ -1,5 +1,4 @@
 function[y] = f(x)
     format long g
-    % wpisac wlasna funkcje ponizej!
-    y = cos(x)/x;
+    y = (x^2)+3*x+2;
 end
