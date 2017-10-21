@@ -24,7 +24,6 @@ int main(void)
 				printf("Proces potomny o pidzie %d z rodzica %d\n",getpid(),getppid());
 				system("ps -efa");
 				sleep(5);
-				exit(2);
 			}
 		}
 	}
