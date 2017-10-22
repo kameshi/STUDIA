@@ -24,7 +24,6 @@ int main(void)
 				if(i==4)
 				{	
 					sleep(5);
-					
 				}
 				else
 				{
@@ -39,6 +38,5 @@ int main(void)
 			}
 		}
 	}
-	wait(NULL);
 	exit(0);
 }
