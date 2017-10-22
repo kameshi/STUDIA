@@ -22,16 +22,11 @@ int main(void)
 			if(childpid==0)
 			{
 				printf("Proces potomny o pidzie %d z rodzica %d\n",getpid(),getppid());
-				system("ps -efa");
 				sleep(5);
 				exit(2);
 			}
 		}
 	}
-	int j=0;
-	for(;j<5;j++)
-	{
-		wait(NULL);
-	}
+	wait(NULL);
 	exit(0);
 }

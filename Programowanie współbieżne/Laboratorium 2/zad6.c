@@ -23,8 +23,7 @@ int main(void)
 				printf("Proces potomny o pidzie %d z rodzica %d\n",getpid(),getppid());
 				if(i==4)
 				{	
-					system("ps -efa");
-					sleep(2);
+					sleep(5);
 					
 				}
 				else
@@ -40,5 +39,6 @@ int main(void)
 			}
 		}
 	}
+	wait(NULL);
 	exit(0);
 }
