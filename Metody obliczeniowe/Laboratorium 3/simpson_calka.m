@@ -1,4 +1,4 @@
-function[y] = simpson(a,b,n,f)
+function[y] = simpson_calka(a,b,n,f)
 format long g
     if (n<2) || mod(n,2)
         disp('Liczba podprzedzialow musi byc parzysta oraz >=2')

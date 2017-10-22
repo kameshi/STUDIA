@@ -1,7 +1,7 @@
 function[y] = prostokat_calka_niedomiar(a,b,n,f)
 format long g
-    if (n<2) || mod(n,2)
-        disp('Liczba podprzedzialow musi byc parzysta oraz >=2')
+    if (n<2)
+        disp('Liczba podprzedzialow musi byc >=2')
         return 
     end
     h=(b-a)/n;
