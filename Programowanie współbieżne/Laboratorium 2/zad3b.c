@@ -21,7 +21,6 @@ int main(void)
 		else
 		{
 			sleep(2);
-			system("ps -efa");
 			printf("Proces macierzysty o pidzie %d i dziecku %d\n",getpid(),childpid);
 		}
 	}

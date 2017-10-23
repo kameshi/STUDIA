@@ -17,7 +17,6 @@ int main(void)
 		if(childpid==0)
 		{
 			sleep(2);
-			system("ps -efa");
 			printf("Proces potomny o pidzie %d z rodzica %d\n",getpid(),getppid());
 		}
 		else
