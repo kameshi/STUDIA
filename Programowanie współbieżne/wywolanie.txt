@@ -1,0 +1,13 @@
+83613@st11-lab312:~/PW$ gcc zad2.c -Wall -o zad2
+83613@st11-lab312:~/PW$ ./zad2
+Pomyslnie utworzono PIPE - SERWER
+Pomyslnie utworzono PIPE - KLIENT
+[KLIENT] Podaj nazwe pliku: plik.txt
+[SERWER] Plik istnieje! Odczytuje plik linia po linii i zapisuje do lacza!
+[KLIENT] Odczyt zawartosci bufora od [SERWERA]:
+Programowanie wspolbiezne
+Laboratorium 3
+Lacza nienazwane PIPE
+
+[KLIENT] Zakonczono odczyt bufora.
+
