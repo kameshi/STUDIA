@@ -5,7 +5,7 @@ format long g
         return 
     end
     h=(b-a)/n;
-    y=feval(f,a) +  feval(f,b);
+    y = 0;
     for i = 1 : n-1
         if mod(i,2)
             y=y+4*feval(f,a+i*h);
@@ -13,5 +13,5 @@ format long g
             y=y+2*feval(f,a+i*h);
         end
     end
-    y=h*y/3;
+    y=(h*(y+feval(f,a) +  feval(f,b)))/3;
 end 
