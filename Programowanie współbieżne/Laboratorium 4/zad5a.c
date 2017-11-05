@@ -16,6 +16,7 @@
 
 extern int errno;
 int fifo_zapis;
+int PID_potomek;
 
 void obsluga_sygnalu(int nr_syg)
 {
@@ -117,7 +118,6 @@ int main(void)
 {
     signal(SIGINT,obsluga_sygnalu);
     stworz_kolejki();
-    int PID_potomek;
     if((PID_potomek = fork()) < 0)
     {
         perror("[KLIENT 1] Nie moge forknac!\n");
@@ -131,7 +131,6 @@ int main(void)
         }
         else
         {
-            signal(SIGUSR1,SIG_IGN);
             czytaj_kolejke();
             kill(PID_potomek,SIGKILL);
         }
