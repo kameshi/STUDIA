@@ -14,7 +14,8 @@ extern int errno;
 
 int otworzFIFO()
 {
-	int fifo = open(FIFO1, O_WRONLY);
+    int fifo = open(FIFO1, O_WRONLY);
+	/*int fifo = open(FIFO1, O_WRONLY|O_NDELAY);*/
 	if(fifo < 0)
 	{
 		perror("Nie mozna otworzyc FIFO do pisania!");

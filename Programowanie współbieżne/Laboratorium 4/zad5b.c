@@ -1,116 +1,141 @@
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <string.h>
-#include <wait.h>
-#include <errno.h>
+#include <fcntl.h>
 #include <signal.h>
+#include <errno.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 #define FIFO1 "/tmp/fifo.1"
 #define FIFO2 "/tmp/fifo.2"
-#define WYJSCIE "KONIEC"
+#define PRAWA 0666
+#define ROZMIAR_BUFORA 1024
+#define KONIEC "STOP"
 
-int PID_potomek;
-int PID_rodzic;
-int fifo_pisanie;
+extern int errno;
+int fifo_zapis;
 
-void obsluga_zakonczenia_potomka(int nr)
+void obsluga_sygnalu(int nr_syg)
 {
+    write(fifo_zapis,KONIEC,sizeof(KONIEC));
     exit(0);
 }
 
-void obsluga_zakonczenia_procesow(int nr)
+void stworz_kolejki()
 {
-    if(getpid() == PID_potomek)
+    if(access(FIFO1,F_OK)!=-1 && access(FIFO1,F_OK)!=-1)
     {
-        char bufor[] = "KONIEC";
-        int n = write(fifo_pisanie,bufor,strlen(bufor));
+        printf("[KLIENT 2] Kolejki juz istnieja - stworzone przez [KLIENT 1].\n");
+    }
+    else
+    {
+        if(mknod(FIFO1,PRAWA|S_IFIFO,0) == -1)
+        {
+            perror("[KLIENT 2] Nie mozna stworzyc kolejki FIFO1!\n");
+        }
+        else
+        {
+            printf("[KLIENT 2] Stworzono kolejke FIFO1.\n");
+        }
+        if(mknod(FIFO2,PRAWA|S_IFIFO,0) == -1)
+        {
+            perror("[KLIENT 2] Nie mozna stworzyc kolejki FIFO2!\n");
+        }
+        else
+        {
+            printf("[KLIENT 2] Stworzono kolejke FIFO2.\n");
+        }
+    }
+}
+
+void usun_kolejki()
+{
+    unlink(FIFO1);
+    unlink(FIFO2);
+}
+
+void czytaj_kolejke()
+{
+    int fifo = open(FIFO1,O_RDONLY);
+    if(fifo<0)
+    {
+        perror("[KLIENT 2] Nie mozna otworzyc kolejki FIFO1 do czytania!\n");
+        exit(-1);
+    }
+    else
+    {
+        printf("[KLIENT 2] Pomyslnie otwarto kolejke FIFO1 do czytania!\n");
+    }
+    char bufor[ROZMIAR_BUFORA];
+    while(strcmp(bufor,KONIEC)!=0)
+    {
+        int n = read(fifo,bufor,sizeof(bufor));
+        if(n<=0)
+        {
+            perror("[KLIENT 2] Blad odczytu z kolejki FIFO1!\n");
+        }
+        else
+        {
+            bufor[n]='\0';
+            if(strcmp(KONIEC,bufor)==0)
+            {
+                printf("[KLIENT 1] odlaczyl sie od komunikacji!\n");
+            }
+            printf("[KLIENT 1]: %s",bufor);
+        }
+    }
+    usun_kolejki();
+}
+
+void pisz_do_kolejki()
+{
+    fifo_zapis = open(FIFO2,O_WRONLY);
+    if(fifo_zapis<0)
+    {
+        perror("[KLIENT 2] Nie mozna otworzyc kolejki FIFO2 do pisania!\n");
+        exit(-1);
+    }
+    else
+    {
+        printf("[KLIENT 2] Pomyslnie otwarto kolejke FIFO2 do pisania!\n");
+    }
+    char bufor[ROZMIAR_BUFORA];
+    while(1)
+    {
+        fgets(bufor,sizeof(bufor),stdin);
+        int n = write(fifo_zapis,bufor,strlen(bufor));
         if(strlen(bufor)!=n)
         {
-            perror("[KLIENT 2] Blad zapisu do fifo!\n");
+            perror("[KLIENT 2] Nie udalo sie zapisac wiadomosci do kolejki FIFO2!\n");
         }
-        exit(0);
-    }
-    else if(getpid() == PID_rodzic)
-    {
-        wait(NULL);
-        exit(0);
     }
 }
 
 int main(void)
 {
-    signal(SIGINT, obsluga_zakonczenia_procesow);
-    int childpid;
-    if((childpid = fork())==-1)
+    signal(SIGINT,obsluga_sygnalu);
+    stworz_kolejki();
+    int PID_potomek;
+    if((PID_potomek = fork()) < 0)
     {
         perror("[KLIENT 2] Nie moge forknac!\n");
-        exit(1);
     }
     else
     {
-        if(childpid == 0)
+        if(PID_potomek == 0)
         {
-            signal(SIGUSR1,obsluga_zakonczenia_potomka);
-            PID_potomek = getpid();
-            int fifo = open(FIFO2,O_WRONLY);
-            if(fifo < 0)
-            {
-                perror("[KLIENT 2] Nie mozna otworzyc kolejki FIFO2 do pisania!\n");
-            }
-            else
-            {
-                printf("[KLIENT 2] Otwarto kolejke FIFO2 do pisania!\n");
-                fifo_pisanie = fifo;
-            }
-            char bufor[1024];
-            while(1)
-            {
-                fgets(bufor,sizeof(bufor),stdin);
-                int n = write(fifo,bufor,strlen(bufor));
-                if(strlen(bufor) != n)
-                {
-                    perror("[KLIENT 2] Blad zapisu do FIFO2!\n");
-                }
-            }
+            pisz_do_kolejki();
+            exit(0);
         }
         else
         {
             signal(SIGUSR1,SIG_IGN);
-            PID_rodzic = getpid();
-            int fifo = open(FIFO1,O_RDONLY);
-            if(fifo < 0)
-            {
-                perror("[KLIENT 2] Nie mozna otworzyc kolejki FIFO1 do czytania!\n");
-            }
-            char bufor[1024];
-            while(1)
-            {
-                int n = read(fifo,bufor,sizeof(bufor));
-                if(n<=0)
-                {
-                    perror("[KLIENT 2] Blad odczytu z FIFO1!\n");
-                }
-                else
-                {
-                    bufor[n]='\0';
-                    if(strcmp(WYJSCIE,bufor)==0)
-                    {
-                        printf("Odlaczyl sie [KLIENT 1]!\n");
-                        break;
-                    }
-                    printf("[KLIENT 1]:");
-                    printf("%s",bufor);
-                }
-            }
-            kill(PID_potomek,SIGUSR1);
-            wait(NULL);
-            exit(0);
+            czytaj_kolejke();
+            kill(PID_potomek,SIGKILL);
         }
     }
-    exit(0);
     return 0;
 }
+

@@ -12,12 +12,27 @@
 
 extern int errno;
 
+void stworzFIFO()
+{
+	if(mknod(FIFO1,0666|S_IFIFO,0)<0)
+	{
+		perror("[PISANIE] Nie mozna stworzyc FIFO!\n");
+		unlink(FIFO1);
+		exit(0);
+	}
+	else
+	{
+		printf("[PISANIE] Pomyslnie utworzono FIFO!\n");
+	}
+}
+
 int otworzFIFO()
 {
 	int fifo = open(FIFO1, O_WRONLY);
 	if(fifo < 0)
 	{
 		perror("Nie mozna otworzyc FIFO do pisania!");
+		unlink(FIFO1);
 		exit(0);
 	}
 	else
@@ -27,7 +42,7 @@ int otworzFIFO()
 	}
 }	
 
-void piszFIFO(int fifo)
+void piszDoFIFO(int fifo)
 {	
 	char buffor[] = "Ala ma kota a kot ma ale";
 	int n = write(fifo,buffor,strlen(buffor));
@@ -43,10 +58,11 @@ void piszFIFO(int fifo)
 
 int main(void)
 {
+	stworzFIFO();
 	int fifo = otworzFIFO();
 	if(fifo > 0)
 	{
-		piszFIFO(fifo);
+		piszDoFIFO(fifo);
 	}
 	else return 0;
 }
