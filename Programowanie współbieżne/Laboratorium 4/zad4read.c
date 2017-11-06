@@ -19,6 +19,7 @@ int otworzFIFO()
 	if(fifo < 0)
 	{
 		perror("Nie mozna otworzyc FIFO do czytania!");
+		unlink(FIFO1);
 		exit(0);
 	}
 	else
@@ -43,6 +44,11 @@ void czytajFIFO(int fifo)
 		printf("\n");
 	}
 }
+
+void usunFIFO()
+{
+    unlink(FIFO1);
+}
 	
 int main(void)
 {
@@ -52,4 +58,5 @@ int main(void)
 		czytajFIFO(fifo);
 	}
 	else return 0;
+	usunFIFO();
 }
