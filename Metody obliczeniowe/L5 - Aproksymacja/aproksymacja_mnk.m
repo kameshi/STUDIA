@@ -6,6 +6,8 @@ function[Q] = aproksymacja_mnk(X,Y)
     M2=zeros([m+1 m+2]);
     a=min(X)-2;
     b=max(X)+2;
+
+    % GŁÓWNY ALGORYTM:
     for i=1:2*m+1
         for j=1:n
             S(i)=S(i)+X(j)^(i-1);
@@ -25,6 +27,8 @@ function[Q] = aproksymacja_mnk(X,Y)
     A=M2(1:m+1,1:m+1);
     B=M2(1:m+1,m+2);
     Q=inv(A)*B;
+
+    % WYKRESOWE OBLICZENIA:
     XX=a:b;
     YY=zeros([1 size(XX,2)]);
     for i=1:size(XX,2)
@@ -32,6 +36,8 @@ function[Q] = aproksymacja_mnk(X,Y)
             YY(i)=YY(i)+Q(j)*XX(i)^(j-1);
         end
     end
+
+    % RYSOWANIE WYKRESU:
     plot(X,Y,'o',X,Y,XX,YY);
 end
     
