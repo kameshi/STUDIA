@@ -3,7 +3,7 @@ function[Q] = aproksymacja_mnk(X,Y)
     n=size(X,2);
     S=zeros([1 2*m+1]);
     T=zeros([1 m+1]);
-    M2=zeros([m+1 m+2]);
+    TMP=zeros([m+1 m+2]);
     a=min(X)-2;
     b=max(X)+2;
 
@@ -20,13 +20,13 @@ function[Q] = aproksymacja_mnk(X,Y)
     end
     for i=1:m+1
         for j=1:m+1
-            M2(j,i)=S(1,j+i-1);
+            TMP(j,i)=S(1,j+i-1);
         end
     end
-    M2(1:m+1,m+2) = T;
-    A=M2(1:m+1,1:m+1);
-    B=M2(1:m+1,m+2);
-    Q=inv(A)*B;
+    TMP(1:m+1,m+2) = T;
+    A=TMP(1:m+1,1:m+1);
+    B=TMP(1:m+1,m+2);
+    Q=A\B;
 
     % WYKRESOWE OBLICZENIA:
     XX=a:b;
@@ -38,9 +38,11 @@ function[Q] = aproksymacja_mnk(X,Y)
     end
 
     % RYSOWANIE WYKRESU:
-    plot(X,Y,'o',X,Y,XX,YY);
+    plot(X,Y,'o',XX,YY);
+    title("APROKSYMACJA");
+    xlabel("X");
+    ylabel("Y");
 end
-    
     
             
    
