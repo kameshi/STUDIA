@@ -1,0 +1,264 @@
+body {
+    background-color: #fff;
+    background-image: url("tlo.jpg");
+    background-repeat: repeat;
+    margin: 0 !important;
+}
+
+header {
+    border: 2px solid rgb(37, 36, 100);
+    font-family: "Tahoma";
+    padding: 5px;
+    text-align: center;
+    color: rgb(83, 80, 80);
+    background: rgb(210, 217, 224);
+}
+
+.signature {
+    font-family: Verdana;
+    font-size: 14px;
+    letter-spacing: 0.3mm;
+    word-spacing: 5px;
+    border: inherit;
+}
+
+#container {
+    width: 90%;
+    min-width: 1100px;
+    min-height: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#nav {
+    height: 75px;
+    min-width: 1100px;
+    text-align: center;
+}
+
+#topmenu {
+    display: inline-block;
+}
+
+#topmenu ul li[atrybut~="a"] {
+    background: rgb(173, 178, 180);
+}
+
+#topmenu ul li[atrybut="b"] {
+    background: rgb(225, 233, 236);
+}
+
+#topmenu ul,
+#leftmenu ul {
+    font-family: "Tahoma";
+    font-weight: bold;
+    height: 75px;
+    font-size: 20px;
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+#topmenu ul li {
+    display: block;
+    float: left;
+    width: 260px;
+    background: rgb(204, 213, 218);
+}
+
+#topmenu ul li a {
+    height: 71px;
+    text-decoration: none;
+    display: block;
+    line-height: 75px;
+    text-align: center;
+    border: 2px solid rgb(37, 36, 100);
+    color: rgb(37, 36, 100);
+}
+
+#topmenu ul li a:hover {
+    background: rgb(37, 36, 100);
+    color: rgb(255, 255, 255);
+}
+
+#leftmenu {
+    max-width: 300px;
+    min-height: 600px;
+    float: left;
+    border: 2px solid rgb(37, 36, 100);
+    display: block;
+    background: rgb(173, 178, 180);
+}
+
+#leftmenu ul li {
+    display: block;
+    width: 300px;
+    background: rgb(173, 178, 180);
+    float: left;
+}
+
+#leftmenu ul li:nth-of-type(2n) {
+    background: rgb(225, 233, 236);
+}
+
+#leftmenu ul li a {
+    height: 71px;
+    text-decoration: none;
+    display: block;
+    line-height: 75px;
+    text-align: center;
+    border-bottom: 2px solid rgb(37, 36, 100);
+    color: rgb(37, 36, 100);
+}
+
+#leftmenu ul li a:hover {
+    background: rgb(37, 36, 100);
+    color: rgb(255, 255, 255);
+}
+
+article,
+#leftmenu {
+    display: table-cell;
+    vertical-align: top;
+    margin-top: 20px;
+}
+
+article {
+    min-width: 792px;
+    min-height: 600px;
+    border: 2px solid rgb(37, 36, 100);
+    display: block;
+}
+
+#content {
+    margin-left: 300px;
+    padding: 20px;
+    min-width: 452px;
+    height: 520px;
+    overflow: auto;
+    font-family: Verdana;
+    text-align: center;
+    white-space: normal;
+    font-size: 30px;
+}
+
+footer {
+    min-width: 1100px;
+    min-height: 80px;
+    text-align: center;
+    padding: 10px;
+    display: block;
+    margin-top: 20px;
+    border: 2px solid rgb(37, 36, 100);
+    background: rgb(210, 217, 224);
+    color: rgb(83, 80, 80);
+}
+
+footer::before {
+    content: "Autorzy:";
+    font-family: Verdana;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+footer::after {
+    content: "2017";
+    font-family: Verdana;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+#block {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    background: black;
+    color: white;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    font-family: Tahoma;
+    line-height: 50px;
+    text-align: center;
+}
+
+#content p:first-child::first-line {
+    background: rgb(37, 36, 100);
+    color: rgb(255,255,255);
+    letter-spacing: 5mm;
+    word-spacing: 10px;
+    line-height: 75px;
+}
+
+#content p:first-child::first-letter {
+    font-weight: bold;
+    color: rgb(223, 223, 119);
+}
+
+#content p[id="b"] {
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+#content p+span {
+    background: rgb(151, 163, 163);
+    color: rgb(255,255,255);
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#content>hr {
+    border: 1px solid rgb(37, 36, 100);
+    display: block;
+}
+
+.vertical {
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    height: 100px;
+    border: 1px solid rgb(37, 36, 100);
+}
+
+.vertical span {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.form {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#php_form span input:active,
+input:focus {
+    background: rgb(37, 36, 100);
+    color: rgb(255,255,255);
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#php_form span textarea:active,
+textarea:focus {
+    background: rgb(37, 36, 100);
+    color: rgb(255,255,255);
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#php_form span select:active,
+select:focus {
+    background: rgb(37, 36, 100);
+    color: rgb(255,255,255);
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#php_form span input[type="submit"] {
+    background: rgb(37, 36, 100);
+    color: rgb(255,255,255);
+    font-family: Verdana;
+    font-size: 20px;
+    font-weight: bold;
+}
