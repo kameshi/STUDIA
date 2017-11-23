@@ -180,6 +180,7 @@ footer::after {
     font-family: Tahoma;
     line-height: 50px;
     text-align: center;
+	border-radius: 30px;
 }
 
 #content p:first-child::first-line {
@@ -239,12 +240,20 @@ input:focus {
     font-size: 15px;
 }
 
+#php_form span input {
+	border-radius: 10px;
+}
+
 #php_form span textarea:active,
 textarea:focus {
     background: rgb(37, 36, 100);
     color: rgb(255,255,255);
     font-weight: bold;
     font-size: 15px;
+}
+
+#php_form span textarea {
+	border-radius: 10px;
 }
 
 #php_form span select:active,
@@ -261,4 +270,5 @@ select:focus {
     font-family: Verdana;
     font-size: 20px;
     font-weight: bold;
+	border-radius: 10px;
 }

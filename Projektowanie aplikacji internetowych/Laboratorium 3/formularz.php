@@ -18,9 +18,9 @@
             echo '<b>Wiek: </b>' . $wiek . '<br>';
             echo '<b>Kontakt: </b>' . $kontakt . '<br>';
             if ($plec == 'k') {
-                echo '<b>Płeć: kobieta </b><br>';
+                echo '<b>Płeć:</b> kobieta<br>';
             } else {
-                echo '<b>Płeć: mężczyzna </b><br>';
+                echo '<b>Płeć:</b> mężczyzna<br>';
             }
             if ($uczelnia == 'ujk') {
                 echo '<b>Uczelnia: UJK Kielce </b><br>';
