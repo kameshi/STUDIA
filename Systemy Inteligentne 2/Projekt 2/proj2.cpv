@@ -1,8 +1,8 @@
 [Parametry sieci neuronowej]
 w. wejœciowa=2
-w. ukryta 1=9
-w. ukryta 2=6
-w. ukryta 3=0
+w. ukryta 1=36
+w. ukryta 2=24
+w. ukryta 3=12
 w. wyjœciowa =3
 f. aktywacji dla w.u.=logistyczna
 f. aktywacji dla w.wy.=logistyczna
