@@ -5,37 +5,53 @@
 void clear(void *argument)
 {
     int *n = (int *)argument;
-    printf("[ZAD3] Czyszczenie numeru: %d\n",*n);
+    printf("\n[ZAD3 - CLEAR] Czyszczenie numeru: %d\n\n",*n);
 }
 
 void *pthread_function_1(void *argument)
 {
-    printf("[ZAD3] Start WATEK 1!\n");
+    printf("[ZAD3 - WATEK 1] Start!\n");
     pthread_t tid = *(pthread_t *)argument;
     int param = 1;
     pthread_cleanup_push(clear,&param);
     sleep(2);
-    printf("[ZAD3] WATEK 1 PO SLEEP 1:\n");
-    pthread_cancel(tid);
+    printf("[ZAD3 - WATEK 1] WYKONANO SLEEP 2s!\n");
+    if(pthread_cancel(tid) == 0)
+    {
+        printf("[ZAD3 - WATEK 1] USUNIETO WATEK 2!\n");
+    }
+    else
+    {
+        printf("[ZAD3 - WATEK 1] NIE MOZNA USUNAC WATKU 2!\n");
+    }
     sleep(2);
-    printf("[ZAD3] WATEK 1 PO SLEEP 2:\n");
-    pthread_cancel(tid);
+    printf("[ZAD3 - WATEK 1] WYKONANO SLEEP 2s!\n");
+    if(pthread_cancel(tid) == 0)
+    {
+        printf("[ZAD3 - WATEK 1] USUNIETO WATEK 2!\n");
+    }
+    else
+    {
+        printf("[ZAD3 - WATEK 1] NIE MOZNA USUNAC WATKU 2 BO NIE ISTNIEJE!\n");
+    }
     pthread_cleanup_pop(1);
     return NULL;
 }
 
 void *pthread_function_2(void *argument)
 {
-    printf("[ZAD3] Start WATEK 2!\n");
+    printf("[ZAD3 - WATEK 2] Start!\n");
     int oldstate;
     int param = 2;
     pthread_cleanup_push(clear,&param);
+    printf("[ZAD3 - WATEK 2] USUWANIE ZABLOKOWANE!\n");
     pthread_setcancelstate(PTHREAD_CANCEL_DISABLE,&oldstate);
     sleep(3);
-    printf("[ZAD3] WATEK 2 PO SLEEP 1:\n");
+    printf("[ZAD3 - WATEK 2] WYKONANO SLEEP 3s!\n");
+    printf("[ZAD3 - WATEK 2] USUWANIE ODBLOKOWANE!\n");
     pthread_setcancelstate(PTHREAD_CANCEL_ENABLE,&oldstate);
     sleep(2);         
-    printf("[ZAD3] WATEK 2 PO SLEEP 2:\n");
+    printf("[[ZAD3 - WATEK 2] WYKONANO SLEEP 2s!\n");
     pthread_cleanup_pop(0);
     return NULL;                        
 }
