@@ -189,16 +189,13 @@ footer::after {
     letter-spacing: 5mm;
     word-spacing: 10px;
     line-height: 75px;
+    text-transform: lowercase;
 }
 
 #content p:first-child::first-letter {
     font-weight: bold;
-    color: rgb(223, 223, 119);
-}
-
-#content p[id="b"] {
     text-transform: uppercase;
-    font-size: 16px;
+    color: rgb(223, 223, 119);
 }
 
 #content p+span {
@@ -225,6 +222,7 @@ footer::after {
 .vertical span {
     display: table-cell;
     vertical-align: middle;
+    text-transform: uppercase; 
 }
 
 .form {
