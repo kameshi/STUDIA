@@ -1,11 +1,8 @@
-<!--
-    w php.ini ustawić display_errors na wartość off!
--->
 <?php
     $host = 'localhost';
     $user = 'root';
     $pass = '';
-    $db = 'lab4';
+    $db = '313b';
     $conn = mysql_connect($host, $user, $pass);
     if (!$conn)
         die('Error: ' . mysql_error());

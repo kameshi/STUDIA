@@ -1,7 +1,7 @@
 function[wynik] = metoda_rungego(x0,xn, y0, h)
     f = inline(input('Podaj rownanie funkcji f(y,t):','s')); 
-    xn = x0:0.1:xn;
-    n = size(xn,2);
+    x = x0:0.1:xn;
+    n = size(x,2);
     xi = zeros(n,1);
     yi = zeros(n,1);
     xi(1) = x0;

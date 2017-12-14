@@ -131,6 +131,8 @@
     }
 ?>
 
+<a href="index.php"> POWRÓT </a>
+
 
 
 
