@@ -1,10 +1,9 @@
-function[c] = metoda_zlotego_podzialu(a,b,h,e)
-format long g
+function[c] = metoda_zlotego_podzialu(a,b,e)
     f = inline(input('Podaj rownanie funkcji f(x): ','s'));
     k = (sqrt(5)-1)/2;
+    xl = b-k*(b-a); 
+    xp = a+k*(b-a);
     while 1
-        xl = (a+b)/2 - h/2;
-        xp = (a+b)/2 + h/2;
         if f(xl) < f(xp)
             b = xp;
             xp = xl;

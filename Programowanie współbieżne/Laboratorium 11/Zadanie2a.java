@@ -1,3 +1,4 @@
+
 public class Zadanie2a implements Runnable {
 
     @Override
