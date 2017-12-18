@@ -2,17 +2,17 @@
     include('config.php');
     if($_POST)
     {
-        if($_POST["name"])
+        if(isset($_POST["name"]))
         {
             $name = htmlspecialchars(trim($_POST['name']));
         }
 
-        if($_POST["capital"])
+        if(isset($_POST["capital"]))
         {
             $capital = htmlspecialchars(trim($_POST['capital']));
         }
 
-        if($_POST["add"])
+        if(isset($_POST["add"]))
         {
             if(!empty($name) && !empty($capital))
             {
@@ -21,7 +21,7 @@
             header("Location: ?");
         }
 
-        if($_POST["modify"])
+        if(isset($_POST["modify"]))
         {
             $idEditRow = htmlspecialchars(trim($_POST["idEditRow"]));
             if(!empty($name) && !empty($capital))
@@ -31,15 +31,19 @@
             header("Location: ?");
         }
 
-        if($_POST["delete"])
+        if(isset($_POST["delete"]))
         {
             $deleteRow = $_POST["delete"];
-            foreach($deleteRow as $idDeleteRow)
+            if(is_array($deleteRow))
             {
-                mysql_query("DELETE FROM country WHERE id = '" .$idDeleteRow. "'");
-                header('Location: ?');
+                foreach($deleteRow as $idDeleteRow)
+                {
+                    mysql_query("DELETE FROM country WHERE id = '" .$idDeleteRow. "'");
+                    header('Location: ?');
+                }
             }
-            $result = mysql_result(mysql_query("SELECT COUNT(*) FROM country"));
+            
+            $result = mysql_result(mysql_query("SELECT COUNT(*) FROM country"),0);
             if($result == 0)
             {
                 mysql_query("ALTER TABLE country AUTO_INCREMENT = 1");
@@ -113,7 +117,7 @@
     <input type="submit" name="add" value="Dodaj">
     </form></center>';
 
-    if($_POST["edit"])
+    if(isset($_POST["edit"]))
     {
         $idEditRow = $_POST["idEditRow"];
         if($idEditRow >= 1)

@@ -1,7 +1,7 @@
 <?php
     $host = 'localhost';
     $user = 'root';
-    $pass = '';
+    $pass = 'admin';
     $db = '313b';
     $conn = mysql_connect($host, $user, $pass);
     if (!$conn)

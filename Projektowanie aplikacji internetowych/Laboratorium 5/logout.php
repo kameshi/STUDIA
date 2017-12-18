@@ -1,5 +1,6 @@
 <?php
     session_start();
-    session_destroy();
-    header('Location: index.php');
+    unset($_SESSION['loginadmin']);
+    unset($_SESSION['passwordadmin']);
+    header("Location: index.php");
 ?>

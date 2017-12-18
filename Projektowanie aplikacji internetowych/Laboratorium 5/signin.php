@@ -1,5 +1,8 @@
 <?php
-    include("createDB.php");
+    include("blockIP.php");
+    $address = $_SERVER['REMOTE_ADDR'];
+    $ip = new BlockIP;
+    $ip->block($address);
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,27 +27,25 @@
                     <li>
                         <a id="first" href="index.php">STRONA GŁÓWNA</a>
                     </li>
-                    <li>
-                        <a href="signup.php">REJESTRACJA</a>
-                    </li>
                 </ul>
             </div>
             <div id="content">
                 <p><strong><h2>ZALOGUJ SIĘ DO PANELU ADMINISTRATORA!</h2></strong></p>
                 <?php
-                    require("trylogin.php");
-                    if (checkLoginSession()) {
+                    include("trylogin.php");
+                    $object = new loginAdmin();
+                    if ($object->checkLoginSession()) {
                         header("Location: adminpanel.php");
                     }
 
-                    if (isset($_POST['login']) && isset($_POST['password'])) {
-                        $login = $_POST['login'];
-                        $pass = $_POST['password'];
+                    if (isset($_POST['loginadmin']) && isset($_POST['passwordadmin'])) {
+                        $login = $_POST['loginadmin'];
+                        $pass = $_POST['passwordadmin'];
                         $pass = addslashes($pass);
                         $login = addslashes($login);
                         $login = htmlspecialchars($login);
                         $pass = sha1($pass);
-                        if (login($login, $pass)) {
+                        if ($object->login($login, $pass)) {
                             header("Location: adminpanel.php");
                         } else {
                             echo '<strong>Błędny login lub hasło! Spróbuj ponownie!</strong>';
@@ -53,8 +54,8 @@
                     
                     echo '<center><form method="post" action="signin.php">
                     <table>
-                        <tr><td>Login</td><td><input type="text" name="login"</td></tr>
-                        <tr><td>Hasło</td><td><input type="password" name="password"></td></tr>
+                        <tr><td>Login</td><td><input type="text" name="loginadmin"</td></tr>
+                        <tr><td>Hasło</td><td><input type="password" name="passwordadmin"></td></tr>
                         <tr><td></td><td><input type="submit" value="Zaloguj" ></td></tr>
                     </table>
                     </form></center>';

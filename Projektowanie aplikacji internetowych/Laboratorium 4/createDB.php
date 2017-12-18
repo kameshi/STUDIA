@@ -1,7 +1,7 @@
 <?php
   $server = 'localhost';
   $user = 'root';
-  $pass = '';
+  $pass = 'admin';
   $connect = mysql_connect($server, $user, $pass);
   mysql_query("DROP DATABASE IF EXISTS 313b",$connect);
   if(!$connect)

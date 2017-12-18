@@ -1,5 +1,8 @@
 <?php
-include("createDB.php");
+    include("blockIP.php");
+    $address = $_SERVER['REMOTE_ADDR'];
+    $ip = new BlockIP;
+    $ip->block($address);
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,8 +17,11 @@ include("createDB.php");
     <div id="container">
         <header>
             <h3>PAI LABORATORIUM 5</h3>
-            <h2 class="signature">Bartłomiej Osak, Tomasz Pasternak</h2>
-            <h2 class="signature">Grupa: 6 Grupa dziekańska: 3ID13B</h2>
+            <?php
+            session_start();
+            $login = $_SESSION['loginadmin'];
+            echo '<h3 id="log"><span>ZALOGOWANO JAKO: ' . $login . '</span></h3>';
+            ?>
         </header>
         
         <article>
@@ -23,12 +29,12 @@ include("createDB.php");
                 <ul>
                     <li>
                         <a id="first" href="index.php">STRONA GŁÓWNA</a>
+                    </li>              
+                    <li>
+                        <a href="adminpanel.php">PANEL ADMINA</a>
                     </li>
                     <li>
                         <a href="signup.php">REJESTRACJA</a>
-                    </li>
-                    <li>
-                        <a href="signin.php">ZALOGUJ</a>
                     </li>
                 </ul>
             </div>
@@ -38,21 +44,21 @@ include("createDB.php");
                 if ($_SERVER['REQUEST_METHOD'] == "GET") {
                     echo '<center><form method="post" action="signup.php">
                         <table>
-                            <tr><td>Login</td><td><input type="text" name="login"</td></tr>
-                            <tr><td>Hasło</td><td><input type="password" name="password"></td></tr>
+                            <tr><td>Login</td><td><input type="text" maxlength="100" name="login"</td></tr>
+                            <tr><td>Hasło</td><td><input type="password" maxlength="30" name="password"></td></tr>
                             <tr><td></td><td><input type="submit" value="Zarejestruj" ></td></tr>
                         </table>
                         </form></center>';
-                } else {
-                    require("connect.php");
-                    $conn = connect();
+                } else if (!empty($_POST['login']) && !empty($_POST['password'])) {
                     $login = addslashes(htmlspecialchars($_POST['login']));
                     $pass = sha1(addslashes(htmlspecialchars($_POST['password'])));
                     if (mysql_query("INSERT INTO `admin` VALUES ('" . $login . "','" . $pass . "')")) {
                         echo '<strong>Zarejestrowano!</strong>';
                     } else {
-                        echo '<strong>Niepowodzenie!</strong>';
+                        echo '<strong>Niepowodzenie - administrator o takim loginie już istnieje!</strong>';
                     }
+                } else {
+                    echo '<strong>Pola formularza nie mogą być puste!</strong>';
                 }
                 ?>
             </div>
