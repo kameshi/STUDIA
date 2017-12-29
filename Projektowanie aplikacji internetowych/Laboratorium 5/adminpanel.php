@@ -1,8 +1,8 @@
 <?php
-include("blockIP.php");
-$address = $_SERVER['REMOTE_ADDR'];
-$ip = new BlockIP;
-$ip->block($address);
+    include("blockIP.php");
+    $address = $_SERVER['REMOTE_ADDR'];
+    $ip = new BlockIP;
+    $ip->block($address);
 ?>
 
 <!DOCTYPE html>

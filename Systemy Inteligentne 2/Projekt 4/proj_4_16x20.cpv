@@ -1,9 +1,9 @@
 [Parametry sieci neuronowej]
-w. wejœciowa=0
+w. wejœciowa=255
 w. ukryta 1=0
 w. ukryta 2=0
 w. ukryta 3=0
-w. wyjœciowa =0
+w. wyjœciowa =5
 f. aktywacji dla w.u.=logistyczna
 f. aktywacji dla w.wy.=logistyczna
 bias=tak

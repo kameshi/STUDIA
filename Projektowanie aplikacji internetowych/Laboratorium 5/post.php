@@ -1,9 +1,8 @@
 <?php 
-error_reporting(E_ALL ^ E_DEPRECATED);
-include("blockIP.php");
-$address = $_SERVER['REMOTE_ADDR'];
-$ip = new BlockIP;
-$ip->block($address);
+    include("blockIP.php");
+    $address = $_SERVER['REMOTE_ADDR'];
+    $ip = new BlockIP;
+    $ip->block($address);
 ?>
 
 <!DOCTYPE html>

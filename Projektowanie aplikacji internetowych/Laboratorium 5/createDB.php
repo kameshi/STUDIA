@@ -1,5 +1,4 @@
 <?php
-  error_reporting(E_ALL ^ E_DEPRECATED);
   $server = 'localhost';
   $user = 'root';
   $pass = 'admin';
