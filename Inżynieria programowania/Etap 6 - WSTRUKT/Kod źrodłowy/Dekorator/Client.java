@@ -132,8 +132,6 @@ public class Client {
     public static void main(String[] args) {
         Fine fine = new Penalty();
         fine = new PaymentTimeFineDecorator(new PenaltyPointFineDecorator(new PaymentTypeFineDecorator(new GeneralTypeFineDecorator(fine))));
-        fine.getName();
-        fine.addCost(400D);
     }
 
 }
