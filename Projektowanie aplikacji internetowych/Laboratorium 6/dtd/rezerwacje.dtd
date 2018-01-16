@@ -1,0 +1,9 @@
+<!ENTITY % wycieczki SYSTEM "wycieczki.dtd">
+%wycieczki;
+<!ENTITY % uczestnicy SYSTEM "uczestnicy.dtd">
+%uczestnicy;
+<!ELEMENT rezerwacje(uczestnicy, wycieczki, rezerwacja+)>
+<!ELEMENT naleznosci(rezerwacja+)>
+<!ELEMENT rezerwacja (#PCDATA)>
+<!ATTLIST rezerwacja pesel IDREF #REQUIRED>
+<!ATTLIST rezerwacja nazwa_wycieczki IDREF #REQUIRED>

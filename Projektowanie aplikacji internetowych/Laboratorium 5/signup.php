@@ -4,7 +4,6 @@
     $ip = new BlockIP;
     $ip->block($address);
 ?>
-
 <!DOCTYPE html>
 <html>
 

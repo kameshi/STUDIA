@@ -1,0 +1,6 @@
+<!ELEMENT uczestnicy (uczestnik+)>
+<!ELEMENT uczestnik (imie, nazwisko, telefon+)>
+<!ELEMENT imie CDATA>
+<!ELEMENT nazwisko (#PCDATA)>
+<!ELEMENT telefon (#PCDATA)>
+<!ATTLIST uczestnik pesel ID #REQUIRED>

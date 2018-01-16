@@ -1,0 +1,22 @@
+td {
+    border: 1px solid black;
+    padding: 3px;
+	text-align: center;
+}
+
+table,
+td {
+    border-collapse: collapse;
+}
+
+.inside {
+    margin-top: 20px;
+}
+
+.php td{
+	min-width: 300px;
+}
+
+.php{
+	margin-top:20px;
+}

@@ -1,0 +1,9 @@
+<!ELEMENT wycieczki (panstwo+)>
+<!ELEMENT panstwo (miasto+)>
+<!ELEMENT miasto (wycieczka+)>
+<!ELEMENT wycieczka EMPTY>
+<!ATTLIST panstwo nazwa_panstwa CDATA #REQUIRED>
+<!ATTLIST miasto nazwa_miasta CDATA #REQUIRED>
+<!ATTLIST wycieczka nazwa_wycieczki ID #REQUIRED>
+
+

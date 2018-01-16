@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="wycieczki.xsl"?>
+
+<wycieczki>
+    <panstwo nazwa_panstwa="Polska">
+        <miasto nazwa_miasta="Warszawa">
+            <wycieczka nazwa_wycieczki="Słoneczna Warszawa"/>
+            <wycieczka nazwa_wycieczki="Zabytkowa Warszawa"/>
+        </miasto>
+        <miasto nazwa_miasta="Gdańsk">
+            <wycieczka nazwa_wycieczki="Szlakami PKM"/>
+            <wycieczka nazwa_wycieczki="Szlakami II WŚ"/>
+        </miasto>
+    </panstwo>
+    <panstwo nazwa_panstwa="Grecja">
+        <miasto nazwa_miasta="Ateny">
+            <wycieczka nazwa_wycieczki="Starozytne Ateny"/>
+        </miasto>
+        <miasto nazwa_miasta="Heraklion">
+            <wycieczka nazwa_wycieczki="Słoneczny Cypr"/>
+        </miasto>
+    </panstwo>
+    <panstwo nazwa_panstwa="Kenia">
+        <miasto nazwa_miasta="Nairobi">
+            <wycieczka nazwa_wycieczki="Odkryj Nairobi"/>
+        </miasto>
+    </panstwo>
+</wycieczki>

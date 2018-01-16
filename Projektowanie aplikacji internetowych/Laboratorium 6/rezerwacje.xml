@@ -1,0 +1,18 @@
+<?xml-stylesheet type="text/xsl" href="rezerwacje.xsl"?>
+
+<!DOCTYPE rezerwacje SYSTEM "dtd\rezerwacje.dtd" [
+	<!ENTITY lista_uczestnikow SYSTEM "uczestnicy.xml">
+	<!ENTITY lista_wycieczek SYSTEM "wycieczki.xml">
+]>
+
+<rezerwacje>
+    &lista_uczestnikow;
+    &lista_wycieczek;
+    <naleznosci>
+        <rezerwacja pesel="96061013677" nazwa_wycieczki="Starozytne Ateny">1499,99</rezerwacja>
+        <rezerwacja pesel="96061013677" nazwa_wycieczki="Szlakami II WŚ">1499,99</rezerwacja>
+        <rezerwacja pesel="56061043543" nazwa_wycieczki="Starozytne Ateny">1499,99</rezerwacja>
+        <rezerwacja pesel="00112000234" nazwa_wycieczki="Słoneczny Cypr">2499,99</rezerwacja>
+        <rezerwacja pesel="65052312345" nazwa_wycieczki="Szlakami II WŚ">789,99</rezerwacja>
+    </naleznosci>
+</rezerwacje>

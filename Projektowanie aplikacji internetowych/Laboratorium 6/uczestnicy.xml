@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="uczestnicy.xsl"?>
+
+<uczestnicy>
+    <uczestnik pesel="96061013677">
+        <imie>Bartłomiej</imie>
+        <nazwisko>Osak</nazwisko>
+        <telefon>667124520</telefon>
+    </uczestnik>
+    <uczestnik pesel="78010101234">
+        <imie>Tomasz</imie>
+        <nazwisko>Pasternak</nazwisko>
+        <telefon>501602030</telefon>
+    </uczestnik>
+    <uczestnik pesel="65052312345">
+        <imie>Rafał</imie>
+        <nazwisko>Warzyński</nazwisko>
+        <telefon>783030945</telefon>
+    </uczestnik>
+    <uczestnik pesel="56061043543">
+        <imie>Ewa</imie>
+        <nazwisko>Kowalska</nazwisko>
+        <telefon>601530234</telefon>
+    </uczestnik>
+    <uczestnik pesel="00112000234">
+        <imie>Alicja</imie>
+        <nazwisko>Nowakowska</nazwisko>
+        <telefon>413318909</telefon>
+    </uczestnik>
+</uczestnicy>
+
